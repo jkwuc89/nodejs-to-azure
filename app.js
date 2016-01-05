@@ -7,11 +7,9 @@ var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
 
 /**
- * Route to index.html
+ * Using express to route requests to public directory
  */
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
-});
+app.use(express.static(__dirname + '/public'));
 
 io.on('connection', function (socket) {
     socket.on('chat message', function (msg) {
